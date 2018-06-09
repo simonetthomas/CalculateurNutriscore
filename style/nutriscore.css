@@ -62,9 +62,6 @@ button.mode_actif{
     background-color:#fff;
 }
 
-.hidden{
-    display:none;
-}
 
 
 /* * * TABLEAUX * * */
@@ -78,8 +75,13 @@ table{
     border: 2px solid #080;
 }
 
-table tr{
-    
+tr{
+    line-height:1;
+    transition : all .2s;
+}
+
+tr.hidden{
+    display:none;
 }
 
 /* Cellules du tableau */
@@ -109,11 +111,13 @@ table input{
     */    
 }
 
+/* icone info */
 .info{
     background-image:url("../img/i.png");
     opacity:.7;
     width:20px;
     margin-left:10px;
+    margin-right:10px;
     height:20px;
     display:inline-block;
     transition:opacity .2s;

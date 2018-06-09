@@ -3,11 +3,11 @@
     - eau
 - Vérif des valeurs entrées (positives, ratio < 100 etc)
     - Avertissements ?
-- Style (CSS)
 - Champs mat grasse : modifier la taille au lieu de display:none
 - Graduations et légende graphe
 - Ajouter énergie en kcal ?
-- Pages annexes : À propos.
+- Pages annexes : À propos
+- FAQ : bouton pour tout déplier / replier
 */
 
 // Modes : general, matieres_grasses, fromages, boissons, eau
