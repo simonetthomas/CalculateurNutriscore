@@ -1,0 +1,204 @@
+html{
+    background-color:#eee;
+}
+body{
+    margin: 10px auto;
+    padding: 10px 20px;
+    max-width: 1000px;
+    font-family : Calibri, Arial, "sans serif";
+    background-color: white;
+    border: 1px solid lightgray;
+    
+}
+/* Titres */
+h1 {
+    display:inline;
+}
+
+/* Boutons de navigation du haut */
+nav{
+    display:inline;
+    margin-left:200px;
+}
+
+nav a{
+    float:right;
+    margin-left:30px;
+    background:#beb;
+    padding:5px;
+    color:black;
+    text-decoration:none;
+    text-transform: uppercase;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+
+/* Boutons de choix de type produit */
+button.categorie{
+    padding: 4px 10px;    
+    background-color:white;
+    font-size:95%;
+    font-family:Roboto;
+    color:black;
+    background-color:#fafaf8;
+    border : 2px solid #bea;
+    margin-right:5px;
+    transition : all 0.2s;
+}
+
+button.categorie:hover{
+    background-color:#eef8ee;
+}
+
+button.categorie:active{
+    background-color:#cec;
+}
+
+button.mode_actif{
+    border : 2px solid #080;
+    background-color:#fff;
+}
+
+.hidden{
+    display:none;
+}
+
+
+/* * * TABLEAUX * * */
+
+table{
+    border-collapse:separate;
+    position:relative;
+    margin:10px auto;
+    max-width:500px;
+    padding:5px;
+    border: 2px solid #080;
+}
+
+table tr{
+    
+}
+
+/* Cellules du tableau */
+table td{
+    /*border:1px solid gray; /* temporaire */
+    /* text-align:center; */
+}
+
+table input{
+    width:50px;
+}
+
+#scores{
+    margin:auto;
+    width:250px;
+    margin-bottom:20px;
+}
+#scores input{
+    width:30px;
+}
+
+/* Réinitialisation tableau*/
+.reset{
+ /* position:relative;
+    bottom:150px;    
+    right:50px;
+    */    
+}
+
+.info{
+    background-image:url("../img/i.png");
+    opacity:.7;
+    width:20px;
+    margin-left:10px;
+    height:20px;
+    display:inline-block;
+    transition:opacity .2s;
+}
+.info:hover{
+    opacity:1;
+}
+
+.instruction{
+    position:absolute;
+}
+
+hr {
+    height:0px;
+    border-top:1px solid green;
+}
+
+/* * * POINTS * * */
+.points{
+    border:none;
+    text-align:center;
+    color:black;
+    background:none;
+    font:bold 85% Roboto, "sans serif";
+}
+
+/* Points négatifs */
+.negatifs{
+    color:#f00;
+}
+
+/* Points positifs */
+.positifs{
+    color:#0a0;
+}
+
+#nutriscore{
+    border:none;
+    text-align:center;
+    font-size:150%;
+    color:black;
+    background:none;
+}
+
+/* Canvas */
+#canvas-wrap{
+    position:relative;
+    margin:auto;
+    width:400px;
+}
+#aiguille{
+    position:absolute;
+    left:190px; top:-46px;
+    transform: rotate(-1.58rad) scale(0.6);
+    transition:transform .5s ;
+    transform-origin: 10px 233px;
+}
+
+/* * FAQ * */
+
+/* Questions */
+.question{
+    display:inline-block;
+    margin-top:5px;
+    padding:5px;
+    background-color:#080;
+    
+    font-size:110%;
+    color:white;    
+    text-decoration:none;
+    cursor:pointer;
+}
+
+
+/* Réponses */
+.reponse-cachee{
+    max-height: 0;
+    opacity: 0;
+    transition: opacity .5s, max-height .8s, margin .8s;
+}
+
+.reponse-visible{
+    max-height:50px;
+    opacity:1;
+    margin:10px 0 15px 20px;
+    transition:all .5s;
+    
+}

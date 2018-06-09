@@ -1,0 +1,122 @@
+<html>
+<head>
+    <title>Calculateur Nutri-Score</title>
+    <meta charset="UTF-8"> 
+    <meta name="description" content="Calculez le Nutri-Score d'un aliment à partir de ses informations nutritionnelles">
+    <meta name="keywords" content="Nutriscore,Nutrition,Alimentation,Calculateur">
+    <meta name="author" content="Thomas Simonet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="js/nutriscore.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/nutriscore.css">
+</head>
+<body>
+<h1>Calculateur Nutri-Score</h1>
+
+<nav>
+    <a href="">À propos</a>
+    <a href="faq.html">FAQ</a>
+</nav>
+
+<p>Calculez le Nutri-Score d'un aliment en renseignant ses valeurs nutritionnelles pour 100 g. Vous trouverez généralement ces informations sous forme de tableau sur l'emballage du produit.</p>
+
+1 - Choisissez une catégorie :
+<button id="bouton_general" class="categorie mode_actif" onclick="bouton_general()">Cas général</button>
+<button id="bouton_matieres_grasses" class="categorie" onclick="bouton_matieres_grasses()">Matières grasses</button>
+<button id="bouton_fromages" class="categorie" onclick="bouton_fromages()">Fromages</button>
+<button id="bouton_boissons" class="categorie" onclick="bouton_boissons()">Boissons <small>(hors eau)</small></button>
+<button id="bouton_eau" class="categorie" disabled>Eau</button>
+<a href="faq.html#categorie"><span class="info"></span>Quelle catégorie choisir ?</a>
+<hr />
+<div class="instruction">2 - Remplissez les valeurs</div>
+<table>
+    <thead>
+        <tr>
+            <th>Informations nutritionnelles</th>
+            <th>Quantité</th>
+            <th>Points</th>
+        </tr>
+    </thead>
+    <tr id="groupe_energie" class="groupe">
+        <td><label for="energie">Énergie</label></td>
+        <td width="90px"><input type="text" id="energie" placeholder="0" onkeyup="calcul_energie()"/> kJ</td>
+        <td width="60px"><input type="text" id="energie_points" value="0" class="points negatifs" disabled /></td>
+	</tr>
+    <tr class="groupe hidden" id="groupe_matieres_grasses">
+        <td><label for="matieres_grasses">Matières grasses</label></td>
+        <td><input type="text" id="matieres_grasses" placeholder="0" onkeyup="calcul_acides_gras_satures()" /> g</td>
+    </tr>
+    <tr id="groupe_acides_gras_satures" class="groupe">
+        <td><label for="acides_gras_satures">Acides gras saturés</label></td>
+        <td><input type="text" id="acides_gras_satures" placeholder="0" onkeyup="calcul_acides_gras_satures()" /> g</td>
+        <td><input type="text" id="acides_gras_satures_points" value="0" class="points negatifs" disabled /></td>
+    </tr>
+    <tr id="groupe_ratio_acides_gras_satures" class="groupe hidden">
+        <td><label for="ratio_acides_gras_satures">Ratio acides gras saturés / mat. grasses</label></td>
+        <td><input type="text" id="ratio_acides_gras_satures" placeholder="0" disabled /> %</td>
+        <td><input type="text" id="ratio_acides_gras_satures_points" value="0" class="points negatifs" disabled /></td>
+    </tr>
+    <tr id="groupe_sucres" class="groupe">
+        <td><label for="sucres">Sucres</label></td>
+        <td><input type="text" id="sucres" placeholder="0" onkeyup="calcul_sucres()" /> g</td>
+        <td><input type="text" id="sucres_points" value="0" class="points negatifs" disabled /></td>
+	</tr>
+    <tr id="groupe_fibres" class="groupe">
+        <td><label for="fibres">Fibres</label></td>
+        <td><input type="text" id="fibres" placeholder="0" onkeyup="calcul_fibres()"/> g</td>
+        <td><input type="text" id="fibres_points" value="0" class="points positifs" disabled /></td>
+	</tr>
+    <tr id="groupe_proteines" class="groupe">
+        <td><label for="proteines">Protéines</label></td>
+        <td><input type="text" id="proteines" placeholder="0" onkeyup="calcul_proteines()" /> g</td>
+        <td><input type="text" id="proteines_points" value="0" class="points positifs" disabled /></td>
+	</tr>
+    <tr id="groupe_sel" class="groupe">
+        <td><label for="sel">Sel</label></td>
+        <td><input type="text" id="sel" placeholder="0" onkeyup="calc_sel()" /> g</td>
+    </tr>
+    <tr id="groupe_sodium" class="groupe">
+        <td><label for="sodium">Sodium</label></td>
+        <td><input type="text" id="sodium" placeholder="0" onkeyup="calc_sodium()" /> mg</td>
+        <td><input type="text" id="sodium_points" value="0" class="points negatifs" disabled /></td>
+    </tr>
+    <tr id="groupe_fruits" class="groupe">
+        <td><label for="fruits">Fruits, légumes et noix</label><a href="faq.html#fruits" class="info"></a></td>
+        <td><input type="text" id="fruits" placeholder="0" onkeyup="calcul_fruits()"/> %</td>
+        <td><input type="text" id="fruits_points" value="0" class="points positifs" disabled /></td>
+    </tr>
+</table>
+<button onclick="reset()" class="reset">Réinitialiser</button>
+<hr />
+<div class="instruction">3 - Obtenez le score</div>
+<table id="scores">
+<tr>
+    <td>Total points négatifs :</td>
+    <td><input type="text" id="points_negatifs" value="0" class="points negatifs" disabled /></td>
+</tr>
+<tr>
+    <td>Total points positifs : </td>
+    <td><input type="text" id="points_positifs" value="0" class="points positifs" disabled /></td>
+</tr>
+<tr>
+    <td>Score nutritionnel : </td>
+    <td><input type="text" id="score_nutritionnel" class="points" value="-" disabled /></td>
+</tr>
+<tr>
+    <td>Nutriscore : </td>
+    <td><input type="text" id="nutriscore" value="-" disabled /></td>
+</tr>
+</table>
+
+<div id="canvas-wrap">
+    <canvas id="canvas" width="400" height="200">Votre navigateur ne peut pas afficher l'élément <code>canvas</code>. Veuillez utiliser un navigateur digne de ce nom.</canvas>
+    <img src="img/aiguille.png" id="aiguille">
+</div>
+
+<p>D'après la formule développée par l'équipe du Dr. Serge Hercberg. Pour en savoir plus sur le Nutri-Score: <a href=".\FAQ.html"/>FAQ</a>. <br />
+Attention : le Nutri-Score indiqué ici est à titre indicatif. Ce site est à visée informationnelle et pédagogique.<br />
+Le Nutri-Score est également disponible sur <a href="https://fr.openfoodfacts.org/">Open Food Facts</a>, base de données libre répertoriant plus de 300 000 produits.</p>
+
+<footer></footer>
+
+</body>
+</html>
