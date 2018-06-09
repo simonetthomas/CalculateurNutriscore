@@ -29,6 +29,9 @@ function bouton_general(){
             case "boissons" : // On était en boissons
                 document.getElementById("bouton_boissons").classList.remove("mode_actif");
                 break;
+            case "eau" : // On était en eau
+                document.getElementById("bouton_eau").classList.remove("mode_actif");
+                break;
         }
         document.getElementById("bouton_general").classList.add("mode_actif");
         mode = "general";
@@ -53,6 +56,9 @@ function bouton_matieres_grasses(){
             case "boissons" :   // On était en boissons
                 document.getElementById("bouton_boissons").classList.remove("mode_actif");
                 break;
+            case "eau" : // On était en eau
+                document.getElementById("bouton_eau").classList.remove("mode_actif");
+                break;
         }
         // Activation du bouton "matières grasses"
         document.getElementById("bouton_matieres_grasses").classList.add("mode_actif");
@@ -60,8 +66,6 @@ function bouton_matieres_grasses(){
         // Affichage des groupes "matières grasses" et masquage des points des "acides gras saturés"
         document.getElementById("groupe_matieres_grasses").classList.remove("hidden");
         document.getElementById("groupe_ratio_acides_gras_satures").classList.remove("hidden");
-        
-        
         
         // Affichage des points de "ratio acides gras saturés"
         document.getElementById("acides_gras_satures_points").classList.add("hidden");
@@ -78,14 +82,17 @@ function bouton_matieres_grasses(){
 function bouton_fromages(){
     if (mode != "fromages"){
         switch (mode){
-            case "general" :    // On était en mode "général"
+            case "general" :
                 document.getElementById("bouton_general").classList.remove("mode_actif");
                 break;
-            case "matieres_grasses" :  // On était en "matières grasses"
+            case "matieres_grasses" :
                 cacher_matieres_grasses();
                 break;
             case "boissons" :
                 document.getElementById("bouton_boissons").classList.remove("mode_actif");
+                break;
+            case "eau" :
+                document.getElementById("bouton_eau").classList.remove("mode_actif");
                 break;
         }
         document.getElementById("bouton_fromages").classList.add("mode_actif");
@@ -111,6 +118,9 @@ function bouton_boissons(){
             case "fromages" :
                 document.getElementById("bouton_fromages").classList.remove("mode_actif");
                 break;
+            case "eau" :
+                document.getElementById("bouton_eau").classList.remove("mode_actif");
+                break;
         }
         document.getElementById("bouton_boissons").classList.add("mode_actif");
         mode = "boissons";
@@ -123,7 +133,7 @@ function bouton_boissons(){
 }
 
 /* Passage en mode "eau" */
-function boisson_eau(){
+function bouton_eau(){
     // TODO
     if (mode != "eau"){
         switch(mode){
@@ -131,17 +141,18 @@ function boisson_eau(){
                 document.getElementById("bouton_general").classList.remove("mode_actif");
                 break;
             case "matieres_grasses":
-            
+                document.getElementById("bouton_matieres_grasses").classList.remove("mode_actif");
                 break;
             case "fromages":
-                
+                document.getElementById("bouton_fromages").classList.remove("mode_actif");
                 break;
             case "boissons":
-            
+                document.getElementById("bouton_boissons").classList.remove("mode_actif");
                 break;
         }
-        
-        
+        document.getElementById("bouton_eau").classList.add("mode_actif");
+        mode = "eau";
+        calcul_eau();
     }
 }
 
@@ -413,7 +424,7 @@ function calcul_fruits(){
     var fruits=document.getElementById("fruits").value;
     var pts=0;
     
-    // Vérif que les fruits soient <= 100 %
+    // Vérif que les fruits sont <= 100 %
     if (fruits > 100){
         fruits = 100;
         document.getElementById("fruits").value = fruits;
@@ -450,8 +461,15 @@ function calcul_points_negatifs(){
     }
     var sucres_pts = parseInt(document.getElementById("sucres_points").value);
     var sodium_pts = parseInt(document.getElementById("sodium_points").value);
+    var pts;
     
-    var pts = energie_pts + acides_gras_satures_pts + sucres_pts + sodium_pts;
+    if (mode != "eau"){
+        pts = energie_pts + acides_gras_satures_pts + sucres_pts + sodium_pts;
+    }
+    else { // eau
+        pts = "-";
+    }
+        
     document.getElementById("points_negatifs").value = pts;
     calcul_score_nutritionnel();
 }
@@ -461,9 +479,17 @@ function calcul_points_positifs(){
     var fibres = parseInt(document.getElementById("fibres_points").value);
     var proteines = parseInt(document.getElementById("proteines_points").value);
     var fruits = parseInt(document.getElementById("fruits_points").value);
+    var pts;
     
-    var pts = fibres + proteines + fruits;
+    if (mode != "eau"){
+        pts = fibres + proteines + fruits;
+    }
+    else { // eau
+        pts = "-";
+    }
     document.getElementById("points_positifs").value = pts;
+    
+        
     calcul_score_nutritionnel();
 }
 
@@ -476,14 +502,19 @@ function calcul_score_nutritionnel(){
     var fibres = parseInt(document.getElementById("fibres_points").value);
     var proteines = parseInt(document.getElementById("proteines_points").value);
     var fruits = parseInt(document.getElementById("fruits_points").value);
-    
-    if (negatifs >= 11 && mode != "fromages" && fruits < 5){
-        // les points positifs des protéines ne sont pas pris en compte
-        score = negatifs - fibres - fruits;
+
+    if (mode != "eau"){
+        if (negatifs >= 11 && mode != "fromages" && fruits < 5){
+            // les points positifs des protéines ne sont pas pris en compte
+            score = negatifs - fibres - fruits;
+        }
+        else {  // négatifs < 11 ou mode == "fromages" ou fruits = 5
+            // tous les points positifs sont pris en compte
+            score = negatifs - positifs;
+        }
     }
-    else {  // négatifs < 11 ou mode == fromages ou fruits = 5
-        // tous les points positifs sont pris en compte
-        score = negatifs - positifs;
+    else { // eau
+        score = "-";
     }
     
     document.getElementById("score_nutritionnel").value = score;
@@ -493,7 +524,6 @@ function calcul_score_nutritionnel(){
 
 /* Calcul du Nutriscore à partir du score nutritionnel et de la catégorie */
 function calcul_nutriscore(){
-    // TODO à adapter aux boissons
     var score = parseInt(document.getElementById("score_nutritionnel").value);
     var nutriscore = "-"
     
@@ -503,14 +533,28 @@ function calcul_nutriscore(){
         else if (score <= 9){nutriscore="D";}
         else {nutriscore="E";}
     }
-    else {
+    else if (mode == "eau"){
+        nutriscore = "A";
+    }
+    else { // général, matières grasses et fromages
         if (score <= -1){nutriscore="A";}
         else if (score <= 2){nutriscore="B";}
         else if (score <= 10){nutriscore="C";}
         else if (score <= 18){nutriscore="D";}
         else {nutriscore="E";}
     }    
-    document.getElementById("nutriscore").value = nutriscore;
+    document.getElementById("nutri-score").value = nutriscore;
+}
+
+/* Calcul des scores dans le cas particulier où c'est de l'eau */
+function calcul_eau(){
+    document.getElementById("points_positifs").value = "-";
+    document.getElementById("points_negatifs").value = "-";
+    document.getElementById("score_nutritionnel").value = "-";
+    document.getElementById("nutri-score").value = "A";
+
+    aiguille(0);
+    
 }
 
 /* Traçage des zones de couleurs sur le canvas */
@@ -632,6 +676,9 @@ function aiguille(score){
     if (mode =="boissons"){
         var angle = (score+20)/60;
     }
+    else if (mode == "eau"){
+        var angle = 0;
+    }
     else {
         var angle = (score+15)/55;
     }
@@ -641,20 +688,10 @@ function aiguille(score){
     // Rotation de l'aiguille
     document.getElementById("aiguille").style.transform="rotate("+angle2+"rad) scale(.6)";
     
-    // Traçage aiguille sur le canvas
-    // ctx.fillRect(0, 2, -140, -4);
 }
 
 /* Initialisation */
 window.onload = function(){
-    /*
-    // Fond central
-    ctx.beginPath();
-    ctx.arc(x,y,r,Math.PI,Math.PI*2,false);
-    ctx.fillStyle = "bisque";
-    ctx.fill();
-    ctx.save();
-    */
     canvas_couleurs();
     
     setTimeout(function(){
@@ -668,7 +705,6 @@ function reset(){
     document.getElementById("energie").value="";
     document.getElementById("energie_points").value="0";
     document.getElementById("matieres_grasses").value="";
-    
     document.getElementById("acides_gras_satures").value="";
     document.getElementById("acides_gras_satures_points").value="0";
     document.getElementById("ratio_acides_gras_satures").value="";
@@ -686,9 +722,10 @@ function reset(){
     document.getElementById("fruits_points").value="0";
     calcul_points_negatifs();
     calcul_points_positifs();
-   
-    
 }
+
+
+/* * * FAQ * * */
 
 /* Déplier ou replier la réponse sous la question */
 function deplier(e){
@@ -709,7 +746,7 @@ function deplier(e){
 function load_faq(){
     var hash=window.location.hash;
     
-    /* Si lien vers une ancre */
+    /* Si lien vers une ancre, on déplie la réponse correspondante */
     if (hash){
         hash=hash.substring(1,hash.length);
         r = document.getElementById(hash).nextElementSibling;

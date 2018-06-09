@@ -24,7 +24,7 @@
 <button id="bouton_matieres_grasses" class="categorie" onclick="bouton_matieres_grasses()">Matières grasses</button>
 <button id="bouton_fromages" class="categorie" onclick="bouton_fromages()">Fromages</button>
 <button id="bouton_boissons" class="categorie" onclick="bouton_boissons()">Boissons <small>(hors eau)</small></button>
-<button id="bouton_eau" class="categorie" disabled>Eau</button>
+<button id="bouton_eau" class="categorie" onclick="bouton_eau()">Eau</button>
 <a href="faq.html#categorie"><span class="info"></span>Quelle catégorie choisir ?</a>
 <hr />
 <div class="instruction">2 - Remplissez les valeurs</div>
@@ -103,7 +103,7 @@
 </tr>
 <tr>
     <td>Nutriscore : </td>
-    <td><input type="text" id="nutriscore" value="-" disabled /></td>
+    <td><input type="text" id="nutri-score" value="-" disabled /></td>
 </tr>
 </table>
 
@@ -112,7 +112,7 @@
     <img src="img/aiguille.png" id="aiguille">
 </div>
 
-<p>D'après la formule développée par l'équipe du Dr. Serge Hercberg. <a href=".\FAQ.html"/>En savoir plus sur le Nutri-Score</a>. <br />
+<p>D'après la formule développée par l'équipe du Dr. Serge Hercberg. <a href="faq.html#nutriscore"/>En savoir plus sur le Nutri-Score</a>. <br />
 Attention : le Nutri-Score calculé ici est à titre indicatif. Ce site est à visée pédagogique.<br />
 Le Nutri-Score est également disponible sur <a href="https://fr.openfoodfacts.org/">Open Food Facts</a>, base de données libre répertoriant plus de 300 000 produits.</p>
 

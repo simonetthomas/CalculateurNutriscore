@@ -24,7 +24,7 @@ nav{
 nav a{
     float:right;
     margin-left:30px;
-    background:#beb;
+    background-color:#cec;
     padding:5px;
     color:black;
     text-decoration:none;
@@ -154,7 +154,7 @@ hr {
     color:#0a0;
 }
 
-#nutriscore{
+#nutri-score{
     border:none;
     text-align:center;
     font-size:150%;
