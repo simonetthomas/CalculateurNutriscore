@@ -194,15 +194,26 @@ hr {
 
 /* Réponses */
 .reponse-cachee{
+    display:block;
     max-height: 0;
+    margin:0;
     opacity: 0;
-    transition: opacity .5s, max-height .8s, margin .8s;
+    pointer-events: none;
+    transition: opacity .4s, max-height .5s, margin .5s;
+}
+.reponse-cachee p{
+    margin:0;
+    transition: margin .5s;
 }
 
 .reponse-visible{
-    max-height:50px;
+    max-height:400px;
     opacity:1;
-    margin:10px 0 15px 20px;
-    transition:all .5s;
-    
+    margin:10px 0 15px 0px;
+    transition:all .5s;    
+}
+
+.reponse-visible p{
+    margin:normal;
+    transition: margin .5s;
 }

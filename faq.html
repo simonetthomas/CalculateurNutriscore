@@ -15,23 +15,46 @@
     <a href="">À propos</a>
     <a href="index.html">Calculateur</a>
 </nav>
-<h2>FAQ</h2>
-
+<h2>Foire Aux Questions</h2>
 
 <div class="question" id="nutriscore" onclick="deplier(event)">• Qu'est-ce que le Nutri-Score ?</div>
-<div class="reponse-cachee">C'est un score.</div>
+<div class="reponse-cachee">
+<p>C'est une note permettant d'avoir une information sur la qualité nutritionnelle globale d'un produit alimentaire. Son but est d'aider les consommateurs au choix d'aliments sains pour sa santé.</p>
+<p>Elle se base sur les travaux de l’équipe du Professeur Serge Hercberg (Université Paris 13), les expertises de l’Anses et du Haut Conseil de Santé Publique. Vous pouvez retrouver plus de détails sur le site <a href="https://www.santepubliquefrance.fr/Sante-publique-France/Nutri-Score">santepubliquefrance.fr</a>.</p>
+</div>
 
 <div class="question" onclick="deplier(event)">• Comment est-il calculé ?</div>
-<div class="reponse-cachee">Au hasard.</div>
+<div class="reponse-cachee">
+<p>La méthode de calcul est basée sur l'assignation de points en fonction de la valeur de chaque nutriment considéré comme « à éviter » ou « à favoriser ». Les valeurs sur lesquelles on se base sont celles indiquées dans la « déclaration nutritionnelle obligatoire », souvent présent sous la forme d'un tableau à l'arrière du produit.</p><p>Les éléments à éviter sont ceux dont les points sont indiqués en rouge dans le tableau : apport calorique, acides gras saturés, sucres, et sodium (calculé d'après le sel). Les éléments à favoriser sont indiqués en vert : teneur en fibres, protéines, et en fruits, légumes et noix.</p>
+<p>La règle générale est de soustraire ensuite ces deux sous-totaux de points (points négatifs - points positifs), résultant en un score nutritionnel, le plus faible étant le meilleur. Une note de A à E est ensuite déterminée sur la base de ce score, A étant la meilleure, et E la plus mauvaise.</p>
+<p>Le calcul exact est un peu plus complexe et dépend de la catégorie d'aliment. Vous pouvez retrouver des explications et la formule du calcul exact en annexe de son <a href="https://www.santepubliquefrance.fr/Media/Files/NUTRISCORE/reglement_usage">règlement d'usage.</a></p>
+</div>
 
 <div class="question" onclick="deplier(event)">• À quoi sert ce calculateur ?</div>
-<div class="reponse-cachee">À rien.</div>
+<div class="reponse-cachee">
+<p>Le Nutri-Score, présent sur les emballages de certains produits alimentaires, est encore très peu répandu dans les supermarchés (non obligatoire, il est soumis à la bonne volonté des marques de l'afficher). De plus, même affiché, il est difficile pour le consommateur de savoir d'où vient cette note qui peut paraître arbitraire.<p>
+<p>Ce calculateur vient donc d'abord de la volonté d'expliciter son calcul, afin d'améliorer la compréhension du logo, et de ses éventuelles limites.</p>
+<p>Le deuxième but est de pouvoir le calculer pour les produits ne l'affichant pas (la plupart, à l'heure actuelle). Vous pouvez prendre n'importe quel aliment concerné par l'affichage du Nutri-Score et calculer vous-même sa note.</p>
+</div>
 
 <div class="question" onclick="deplier(event)">• Pourquoi le résultat diffère-t-il selon la catégorie ?</div>
-<div class="reponse-cachee">Parce que.</div>
+<div class="reponse-cachee">
+<p>Tous les aliments sont loin d'être semblables les uns des autres, et il est nécessaire de prendre en compte certaines particularités. La plupart des aliments rentreront dans la catégorie « générale », pour les autres, le calcul est un peu différent.</p>
+<p>Par exemple, les beurre ou huiles étant constitués majoritairement de matières grasses, leur taux d'acides gras saturés est généralement élevé et les juger d'après la même formule que les autres aliments ne permettrait pas de les différencier efficacement entre eux. Au lieu de la seule quantité d'acides gras saturés, c'est donc par exemple le ratio acides gras saturés sur lipides qui est pris en compte.</p>
+<p>Idem pour les boissons, qui doivent notamment être sanctionnées plus durement que les aliments solides pour les sucres et la valeur énergétique.</p>
+</div>
 
 <div class="question" id="categorie" onclick="deplier(event)">• Comment choisir la catégorie ?</div>
-<div class="reponse-cachee">À la courte paille.</div>
+<div class="reponse-cachee">
+<p>• Pour la plupart des aliments, c'est la catégorie « <strong>cas général</strong> » qui doit être choisie. Ex : plats préparés, desserts, céréales, biscuits, sauces, laitages (hors fromage)...</p>
+<p>• La catégorie « <strong>matières grasses</strong> » correspond aux matières grasses vendues en tant que produits finis. Ex : beurres, margarines, huiles végétales et crèmes.</p>
+<p>• La catégorie « <strong>fromages</strong> » correspond aux fromages, fromages fondus, et spécialités fromagères. Les fromages blancs ne sont pas concernés et entrent dans le cas général.</p>
+<p>• La catégoire « <strong>boissons</strong> » concerne les boissons non alcoolisées, hors eau qui a sa propre catégorie. Ex : sodas y compris « light », jus de fruits, nectars, smoothies, eaux sucrées, cafés ou thé reconstitués avec de l'eau...<br/>
+<i>Les laits, yaourts à boire, boissons lactées, ou reconstituées avec un liquide autre que l'eau entrent dans le cas générale et non dans les boissons.</i><br />
+La meilleure note pour cette catégorie est le B.</p>
+<p>• La catégorie « <strong>eau</strong> » est à choisir pour les eaux minérales ou de source, plates ou pas, et non sucrées. L'eau est en effet la seule boisson à préconiser totalement, et à obtenir un A.</p>
+<p>Certaines catégories d'aliments ne sont pas concernées par le Nutri-Score : les aliments bruts (fruits et légumes frais, viandes découpées, miel), les aliments infantiles pour enfants de 0 à 3 ans.</p>
+</div>
 
 <div class="question" id="fruits" onclick="deplier(event)">• Comment remplir le pourcentage de fruits, légumes et noix ?</div>
 <div class="reponse-cachee">En mettant des chiffres dedans.</div>
