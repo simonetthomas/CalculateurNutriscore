@@ -207,7 +207,7 @@ hr {
 }
 
 .reponse-visible{
-    max-height:400px;
+    max-height:1000px;
     opacity:1;
     margin:10px 0 15px 0px;
     transition:all .5s;    
