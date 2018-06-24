@@ -57,16 +57,36 @@ La meilleure note pour cette catégorie est le B.</p>
 </div>
 
 <div class="question" id="fruits" onclick="deplier(event)">• Comment remplir le pourcentage de fruits, légumes et noix ?</div>
-<div class="reponse-cachee">À venir.</div>
+<div class="reponse-cachee"><p>Calculez le total des ingrédients représentant des fruits, légumes, ou noix dans la liste d'ingrédients.<br />
+Par exemple, si la liste indique « Eau, courgettes (30 %), tomates (20 %) », alors le total est de 30 % + 20 % = 50 %.</p>
+<p>Il existe une exception pour les concentrés de tomates et les fruits secs ou semi-hydratés, qui doivent compter double (y compris pour les concentrés triples). Afin de calculer le pourcentage, il faut donc multiplier leur quantité « q » par deux, tout en divisant rajoutant cette quantité q au dénominateur, c'est à dire diviser le tout par 100 + q.</p>
+<p>Ainsi, pour une liste comportant 20% de fruits et 15% de raisins secs, le calcul est le suivant : <br />(20 + (2×15)) / (100 + 15) = 50/115 = 43,5 %, à comparer aux 35 % si ce facteur n'était pas appliqué.
+</p>
+</div>
 
-<div class="question" onclick="deplier(event)">• Qu'est-ce qui est considéré comme "fruits, légumes et noix" pour le calcul ?</div>
-<div class="reponse-cachee">À venir.</div>
+<div class="question" onclick="deplier(event)">• Qu'est-ce qui est considéré comme « fruits, légumes et noix » pour le calcul ?</div>
+<div class="reponse-cachee">
+<p>Cette dénomination représente en réalité tous les fruits, légumes, légumineuses ainsi que les fruits à coque.</p>
+<ul>
+    <li>Exemples de légumes : épinard, salade, choux, céleri, artichaud, oignon, ail, carotte, concombre, cornichon, champignon, algues...</li>
+    <li>Exemples de légumineuses : pois, haricots, lentilles, soja, fèvres...</li>
+    <li>Exemples de fruits : pomme, poire, orange, baies, raisin, banane, tomate...</li>
+    <li>Exemples de fruits à coque : noix, noisette, pistache, amande, noix de coco, arachide...</li>
+</ul>
+<p>Attention : les tuberculeuses (pomme de terre, igname, le manioc...) ne comptent pas.</p>
+
+<p>Tous ces fruits et légumes, pour compter dans le calcul, doivent être bruts ou peu transformés, y compris cuits ou séchés, pelés, tranchés, en purée, pulpe, jus de fruits 100% issu de jus concentré ou jus de fruit fraîchement pressés. Les sucres de jus de fruits concentrés ou les poudres ne comptent pas dans le calcul.</p>
+
+Pour les jus de fruits pur jus ou les jus 100% à base de concentré par exemple, la quantité sera de 100 %. Les nectars par contre comprennent de l'eau et du sucre, la quantité de fruit sera donc inférieure à 100 %.
+
+<p>Pour les fruits secs, la quantité doit être calculée à l'aide d'un facteur comme expliqué dans la <a href="faq.html#fruits">section ci-dessus</a>.<p>
+</div>
 
 <div class="question" onclick="deplier(event)">• Faut-il ne manger que des produits notés A ?</div>
-<div class="reponse-cachee">À venir.</div>
+<div class="reponse-cachee">Le Nutri-score n'est qu'une indication des apports nutritionnels d'un produit, et n'est évidemment pas le seul facteur à prendre en compte. S'il est bon de privilégier régulièrement les Nutriscore A et B par exemple, Un produit noté E de temps en temps ne vous tuera pas, pensez avant tout à avoir une alimentation variée (et à faire de l'exercice physique régulièrement ☺) !</div>
 
 <div class="question" onclick="deplier(event)">• J'ai trouvé une erreur dans les calculs, comment la signaler ?</div>
-<div class="reponse-cachee">Vous pouvez signaler toute erreur, suggestion ou remarque <a href="https://github.com/simonetthomas/CalculateurNutriscore/issues">sur la page github du projet</a>.</div>
+<div class="reponse-cachee">Vous pouvez signaler toute erreur, suggestion ou remarque dans la <a href="https://github.com/simonetthomas/CalculateurNutriscore/issues">section Issues de la page github du projet</a>.</div>
 </body>
 
 </html>

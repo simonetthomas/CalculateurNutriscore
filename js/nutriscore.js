@@ -6,7 +6,6 @@
 - Champs mat grasse : modifier la taille au lieu de display:none
 - Graduations et légende graphe
 - Ajouter énergie en kcal ?
-- Pages annexes : À propos
 - FAQ : bouton pour tout déplier / replier
 */
 
