@@ -38,12 +38,10 @@ nav a:hover{
 
 /* Boutons de choix de type produit */
 button.categorie{
-    padding: 4px 10px;    
-    background-color:white;
-    font-size:95%;
-    font-family:Roboto;
+    padding: 3px 8px;    
+    font-size:90%;
     color:black;
-    background-color:#fafaf8;
+    background-color:#fff;
     border : 2px solid #bea;
     margin-right:5px;
     transition : all 0.2s;
@@ -59,7 +57,7 @@ button.categorie:active{
 
 button.mode_actif{
     border : 2px solid #080;
-    background-color:#fff;
+    background-color:#f8f8f6;
 }
 
 
@@ -86,8 +84,7 @@ tr.hidden{
 
 /* Cellules du tableau */
 table td{
-    /*border:1px solid gray; /* temporaire */
-    /* text-align:center; */
+    
 }
 
 table input{
@@ -103,12 +100,13 @@ table input{
     width:30px;
 }
 
-/* RÈinitialisation tableau*/
+/* R√©initialisation tableau*/
 .reset{
- /* position:relative;
-    bottom:150px;    
-    right:50px;
-    */    
+	display : none;	/* cach√© pour l'instant */
+	position:relative;
+    bottom:100px;    
+    left:50px;
+        
 }
 
 /* icone info */
@@ -116,9 +114,9 @@ table input{
     background-image:url("../img/i.png");
     opacity:.7;
     width:20px;
-    margin-left:10px;
-    margin-right:10px;
     height:20px;
+	margin-left:10px;
+    margin-right:10px;
     display:inline-block;
     transition:opacity .2s;
 }
@@ -132,7 +130,7 @@ table input{
 
 hr {
     height:0px;
-    border-top:1px solid green;
+    border-top:1px solid #66cc66;
 }
 
 /* * * POINTS * * */
@@ -141,10 +139,10 @@ hr {
     text-align:center;
     color:black;
     background:none;
-    font:bold 85% Roboto, "sans serif";
+    font:bold 85% Calibri, Arial, "sans serif";
 }
 
-/* Points nÈgatifs */
+/* Points n√©gatifs */
 .negatifs{
     color:#f00;
 }
@@ -160,6 +158,7 @@ hr {
     font-size:150%;
     color:black;
     background:none;
+	padding-bottom : 0;
 }
 
 /* Canvas */
@@ -184,36 +183,27 @@ hr {
     margin-top:5px;
     padding:5px;
     background-color:#080;
-    
     font-size:110%;
     color:white;    
     text-decoration:none;
     cursor:pointer;
+	width: 100%;
 }
 
 
-/* RÈponses */
+/* R√©ponses */
 .reponse-cachee{
-    display:block;
+    display: block;
     max-height: 0;
-    margin:0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity .4s, max-height .5s, margin .5s;
-}
-.reponse-cachee p{
-    margin:0;
-    transition: margin .5s;
+	overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s; 
 }
 
 .reponse-visible{
-    max-height:1000px;
-    opacity:1;
-    margin:10px 0 15px 0px;
-    transition:all .5s;    
-}
-
-.reponse-visible p{
-    margin:normal;
-    transition: margin .5s;
+    max-height: 350px;
+    opacity: 1;
+	overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.6s;
 }
