@@ -1,10 +1,8 @@
 ﻿/* TODO :
-- Prendre en compte les cas particuliers 
-    - eau
-- Vérif des valeurs entrées (positives, ratio < 100 etc)
-    - Avertissements ?
+- Vérif des valeurs entrées (ratio matières grasses)
+    - Avertissement ?
 - Champs mat grasse : modifier la taille au lieu de display:none
-- Graduations et légende graphe
+- Graduations et légende graphe ?
 - Ajouter énergie en kcal ?
 - FAQ : bouton pour tout déplier / replier
 */
@@ -133,7 +131,6 @@ function bouton_boissons(){
 
 /* Passage en mode "eau" */
 function bouton_eau(){
-    // TODO
     if (mode != "eau"){
         switch(mode){
             case "general":
@@ -165,7 +162,7 @@ function cacher_matieres_grasses(){
     document.getElementById("groupe_matieres_grasses").classList.add("hidden");
     document.getElementById("groupe_ratio_acides_gras_satures").classList.add("hidden");
     
-    // Réaffichage les points des acides gras saturés
+    // Réaffichage des points des acides gras saturés
     document.getElementById("acides_gras_satures_points").classList.remove("hidden");
     
     // Vidage des champs
@@ -184,8 +181,8 @@ function calcul_energie(){
     var pts=0;
     
     if (energie < 0){
-        document.getElementById("energie").value=0;
-        // Avertissement energie
+        energie = 0
+        document.getElementById("energie").value=energie;
     }
     
     if (mode == "boissons"){
@@ -225,13 +222,21 @@ function calcul_acides_gras_satures(){
         
     var pts=0;
     
-    // Vérif que les valeurs sont <= 100
+    // Vérif que les valeurs sont entre 0 et 100
     if (matieres_grasses > 100){
         matieres_grasses = 100;
         document.getElementById("matieres_grasses").value = matieres_grasses;
     }
+    else if (matieres_grasses < 0){
+        matieres_grasses = 0;
+        document.getElementById("matieres_grasses").value = matieres_grasses;
+    }
     if (acides_gras_satures > 100){
         acides_gras_satures = 100;
+        document.getElementById("acides_gras_satures").value = acides_gras_satures;
+    }
+    else if (acides_gras_satures < 0){
+        acides_gras_satures = 0;
         document.getElementById("acides_gras_satures").value = acides_gras_satures;
     }
     
@@ -281,9 +286,13 @@ function calcul_sucres(){
     var sucres=document.getElementById("sucres").value;
     var pts=0;
     
-    // Vérif que le sucre est <= 100
+    // Vérif que le sucre est entre 0 et 100
     if (sucres > 100){
         sucres = 100;
+        document.getElementById("sucres").value = sucres;        
+    }
+    else if (sucres < 0){
+        sucres = 0;
         document.getElementById("sucres").value = sucres;        
     }
     
@@ -324,9 +333,13 @@ function calcul_fibres(){
     var fibres=document.getElementById("fibres").value;
     var pts=0;
     
-    // Vérif que les fibres sont <= 100
+    // Vérif que les fibres sont entre 0 et 100
     if (fibres > 100){
         fibres = 100;
+        document.getElementById("fibres").value = fibres;        
+    }
+    else if (fibres < 0){
+        fibres = 0;
         document.getElementById("fibres").value = fibres;        
     }
     
@@ -371,9 +384,13 @@ function calcul_proteines(){
 function calc_sel(){
     var sel = document.getElementById("sel").value;
     
-    // Vérif que le sel soit <= 100
+    // Vérif que le sel soit entre 0 et 100
     if (sel > 100){
         sel = 100;
+        document.getElementById("sel").value=sel;
+    }
+    else if (sel < 0){
+        sel = 0;
         document.getElementById("sel").value=sel;
     }
     
@@ -386,10 +403,14 @@ function calc_sel(){
 function calc_sodium(){
     var sodium = document.getElementById("sodium").value;
     
-    // Vérif que le sel soit <= 100
+    // Vérif que le sodium soit entre 0 et 40000
     var sel = sodium/400;
     if (sel > 100){
         sodium = 40000;
+        document.getElementById("sodium").value=sodium;
+    }
+    else if (sel < 0){
+        sodium = 0;
         document.getElementById("sodium").value=sodium;
     }
     
@@ -423,9 +444,13 @@ function calcul_fruits(){
     var fruits=document.getElementById("fruits").value;
     var pts=0;
     
-    // Vérif que les fruits sont <= 100 %
+    // Vérif que les fruits sont entre 0 et 100 %
     if (fruits > 100){
         fruits = 100;
+        document.getElementById("fruits").value = fruits;
+    }
+    else if (fruits < 0){
+        fruits = 0;
         document.getElementById("fruits").value = fruits;
     }
     
